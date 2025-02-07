@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>潮果智联 - 果农服务平台</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffefd5; /* 浅水果色背景 */
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff7f50; /* 鲜艳的橙色 */
+      color: white;
+      font-size: 24px;
+      border-bottom: 2px solid #fff;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 40px;
+    }
+    .button {
+      background-color: #ffcc00; /* 鲜明的黄色 */
+      border-radius: 15px;
+      padding: 20px;
+      width: 150px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .button img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+    .button:hover img {
+      transform: rotate(15deg);
+    }
+    .chatbot {
+      position: fixed;
+      right: 10px;
+      bottom: 10px;
+      width: 50px;
+      height: 50px;
+      background-color: #ff7f50;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+    .chatbot:hover {
+      width: 60px;
+      height: 60px;
+    }
+    .chatbot img {
+      width: 30px;
+      height: 30px;
+    }
+    .chat-window {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    .chat-header {
+      text-align: center;
+      font-weight: bold;
+      color: #ff7f50;
+    }
+    .chat-messages {
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    .chat-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<header>潮果智联 - 果农服务平台</header>
+
+<div class="container">
+  <!-- 按钮示例 -->
+  <div class="button">
+    <img src="https://via.placeholder.com/50x50/ff6347/ffffff?text=IP" alt="打造专属IP">
+    打造专属IP
+  </div>
+  <div class="button">
+    <img src="https://via.placeholder.com/50x50/32cd32/ffffff?text=Q" alt="智能咨询">
+    智能咨询
+  </div>
+  <div class="button">
+    <img src="https://via.placeholder.com/50x50/ffcc00/ffffff?text=H" alt="市场行情">
+    市场行情
+  </div>
+  <div class="button">
+    <img src="https://via.placeholder.com/50x50/ff4500/ffffff?text=L" alt="直播助手">
+    直播助手
+  </div>
+  <div class="button">
+    <img src="https://via.placeholder.com/50x50/87cefa/ffffff?text=C" alt="交流社区">
+    交流社区
+  </div>
+  <div class="button">
+    <img src="https://via.placeholder.com/50x50/98fb98/ffffff?text=P" alt="发布产品">
+    发布产品
+  </div>
+</div>
+
+<!-- AI客服按钮 -->
+<div class="chatbot" onclick="toggleChat()">
+  <img src="https://via.placeholder.com/30x30/ff7f50/ffffff?text=AI" alt="客服">
+</div>
+
+<!-- 聊天窗口 -->
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">AI 客服</div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <input type="text" class="chat-input" id="chatInput" placeholder="请输入问题...">
+</div>
+
+<script>
+  // 切换聊天窗口显示
+  function toggleChat() {
+    const chatWindow = document.getElementById('chatWindow');
+    chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // 简单的聊天互动
+  document.getElementById('chatInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && this.value.trim() !== '') {
+      const message = this.value.trim();
+      const chatMessages = document.getElementById('chatMessages');
+      const userMessage = document.createElement('div');
+      userMessage.textContent = '你: ' + message;
+      chatMessages.appendChild(userMessage);
+      this.value = '';
+
+      // AI回应
+      setTimeout(function() {
+        const aiMessage = document.createElement('div');
+        aiMessage.textContent = 'AI: 我会尽力帮助你！';
+        chatMessages.appendChild(aiMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // 滚动到最底部
+      }, 1000);
+    }
+  });
+</script>
+
+</body>
+</html>
